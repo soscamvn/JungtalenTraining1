@@ -731,7 +731,7 @@
   .cards{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     box-sizing: border-box; 
   }
 
@@ -743,6 +743,7 @@
   .card-icon{
     margin:0;
     padding-left: 10px;
+    padding-top: 10px
   }
   .card-icon img{
     width: 28px;
