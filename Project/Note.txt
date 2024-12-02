@@ -1,0 +1,1 @@
+<meta charset="utf-8"> viet tiếng Việt. đặt ở head
