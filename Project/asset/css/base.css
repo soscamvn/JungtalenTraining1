@@ -18,7 +18,7 @@ html,body{
     padding: 0;
     height: 100%;
     width: 100%; 
-    max-width: 1920px; 
+    max-width: 100%; 
     margin: 0 auto;
 }
 
@@ -34,11 +34,19 @@ html,body{
     max-width: calc(100% - 160px);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48em) {
     .grid {
       padding: 0 20px; 
-      max-width: 100%; 
       width: 100%; 
       height: auto;
+      max-width: 100%;
     }
   }
+
+@media only screen and (minn-width: 48.0625em) and (max-width: 63.9375em) {
+    .grid {
+        width: 100%; 
+        height: auto;
+        max-width: calc(100% - 80px);
+    }
+}
