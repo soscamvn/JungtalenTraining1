@@ -65,8 +65,6 @@ mainContainer.appendChild(newSection2);
  * CSS 
 */
 Object.assign(navbarList.style,{
-    display: 'flex',
-    justifyContent: 'space-evenly',
     alignItems: 'center',
     padding: '0',
 });
@@ -132,6 +130,9 @@ let scrollTimeout;
 window.addEventListener('scroll', function() {
     if (scrollTimeout) {
         clearTimeout(scrollTimeout);
+    }
+    if (width < 560) {
+        return;
     }
     showNavbar();
     scrollTimeout = setTimeout(hideNavbar, 3000);
@@ -221,85 +222,104 @@ ToTopButton.addEventListener('click', () => {
 */
 
 // Build menu responsive
+const MenuButton = document.createElement('button');
+MenuButton.classList.add('menuList');
+MenuButton.innerHTML = '&#9776;';
+document.body.appendChild(MenuButton);
+const dropdownMenu = document.createElement('div');
+dropdownMenu.classList.add('dropdownMenu');
 
+document.body.appendChild(dropdownMenu);
+const originalParent = navbarList.parentNode;
+const placeholder = document.createComment('Navbar Placeholder');
+const style1 = document.createElement('style');
+style1.innerHTML = `
+        .menuList {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            display: block;
+            border-radius: 50%; 
+            font-size: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px; 
+            width: 60px; 
+            height: 60px;
+            line-height: 20px; 
+        }
+        .menuList.active {
+            display: block; 
+        }
+        .dropdownMenu {
+            position: fixed;
+            top: 160px;
+            right: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+            display: none; 
+        }
+        .dropdownMenu.active {
+            display: block;
+        }
+        .dropdownMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdownMenu li {
+            margin: 5px 0;
+        }
+        .dropdownMenu a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+        `;
+document.head.appendChild(style1);
+let timeout;
+MenuButton.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('active');
+    if (dropdownMenu.classList.contains('active')) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            dropdownMenu.classList.remove('active');
+        }, 2000); 
+    } else {
+        clearTimeout(timeout);
+    }
+});
 function checkScreenSize() {
     const width = window.innerWidth;
     if (width < 560) {
-        const MenuButton = document.createElement('button');
-        MenuButton.classList.add('menuList');
-        MenuButton.innerHTML = '&#9776;';
-        document.body.appendChild(MenuButton);
-
-        const dropdownMenu = document.createElement('div');
-        dropdownMenu.classList.add('dropdownMenu');
-        dropdownMenu.appendChild(navbarList);
-        document.body.appendChild(dropdownMenu);
-        const style1 = document.createElement('style');
-        style1.innerHTML = `
-            .menuList {
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background-color: white;
-                color: black;
-                border: none;
-                display: block;
-                border-radius: 50%; 
-                font-size: 25px;
-                cursor: pointer;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                padding: 20px; 
-                width: 60px; 
-                height: 60px;
-                line-height: 20px; 
-            }
-            .menuList.active {
-                display: block; 
-            }
-            .dropdownMenu {
-                position: fixed;
-                top: 160px;
-                right: 20px;
-                background-color: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                padding: 10px;
-                z-index: 1000;
-                display: none; 
-            }
-            .dropdownMenu.active {
-                display: block;
-            }
-            .dropdownMenu ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            .dropdownMenu li {
-                margin: 5px 0;
-            }
-            .dropdownMenu a {
-                text-decoration: none;
-                color: black;
-                font-size: 14px;
-            }
-        `;
-        document.head.appendChild(style1);
-        MenuButton.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('active');
-        });
+        if (!dropdownMenu.contains(navbarList)) {
+            originalParent.replaceChild(placeholder, navbarList);
+            dropdownMenu.appendChild(navbarList);
+        }
+        
 
         MenuButton.style.display = 'block';
         navbarList.style.removeProperty('display');
         ToTopButton.style.bottom = '20px';
         ToTopButton.style.right = '20px';
     }else {
+        if (!originalParent.contains(navbarList)) {
+            dropdownMenu.removeChild(navbarList);
+            originalParent.replaceChild(navbarList, placeholder);
+        }
         MenuButton.style.display = 'none';
         dropdownMenu.classList.remove('active'); 
         navbarList.style.display = 'block'; 
     }
 }
+checkScreenSize();
 window.addEventListener('resize', checkScreenSize);
 // Scroll to section on link click
 
