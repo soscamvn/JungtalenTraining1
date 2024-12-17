@@ -128,6 +128,7 @@ function showNavbar() {
 }
 let scrollTimeout;
 window.addEventListener('scroll', function() {
+    const width = window.innerWidth;
     if (scrollTimeout) {
         clearTimeout(scrollTimeout);
     }
