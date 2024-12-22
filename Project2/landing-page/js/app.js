@@ -168,7 +168,7 @@ MenuButton.addEventListener('click', () => {
     }
 });
 // Checking condition size screen for responsive changes
-function checkScreenSize() {
+function responsivefunction() {
     const width = window.innerWidth;
     if (width < 560) {
         if (!dropdownMenu.contains(navbarList)) {
@@ -191,5 +191,5 @@ function checkScreenSize() {
         navbarList.style.display = 'block'; 
     }
 }
-checkScreenSize();
-window.addEventListener('resize', checkScreenSize);
+responsivefunction();
+window.addEventListener('resize', responsivefunction);
