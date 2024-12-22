@@ -43,34 +43,8 @@ addNewsection(
 );
 
 
-<<<<<<< HEAD
 // Build the navbar
 const sectionsList = document.querySelectorAll('section');
-=======
-/**
- * CSS 
-*/
-Object.assign(navbarList.style,{
-    alignItems: 'center',
-    padding: '0',
-});
-
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-const sections_list = document.querySelectorAll('section');
->>>>>>> 72af2451752bbe963a3d21d5afd31933ff6f285d
 function updateNavbar() {
     navbarList.innerHTML = ''; 
     sectionsList.forEach(section => {
@@ -165,14 +139,7 @@ ToTopButton.addEventListener('click', () => {
 
 
 // Build menu responsive
-const MenuButton = document.createElement('button');
-MenuButton.classList.add('menuList');
-MenuButton.innerHTML = '&#9776;';
-document.body.appendChild(MenuButton);
-const dropdownMenu = document.createElement('div');
-dropdownMenu.classList.add('dropdownMenu');
 
-<<<<<<< HEAD
 // Menu button
 const MenuButton = document.createElement('button');
 MenuButton.classList.add('menuList');
@@ -188,64 +155,6 @@ const placeholder = document.createComment('Navbar Placeholder');
 let timeout;
 
 //set listioner for Menu Button
-=======
-document.body.appendChild(dropdownMenu);
-const originalParent = navbarList.parentNode;
-const placeholder = document.createComment('Navbar Placeholder');
-const style1 = document.createElement('style');
-style1.innerHTML = `
-        .menuList {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background-color: white;
-            color: black;
-            border: none;
-            display: block;
-            border-radius: 50%; 
-            font-size: 25px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 20px; 
-            width: 60px; 
-            height: 60px;
-            line-height: 20px; 
-        }
-        .menuList.active {
-            display: block; 
-        }
-        .dropdownMenu {
-            position: fixed;
-            top: 160px;
-            right: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            z-index: 1000;
-            display: none; 
-        }
-        .dropdownMenu.active {
-            display: block;
-        }
-        .dropdownMenu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .dropdownMenu li {
-            margin: 5px 0;
-        }
-        .dropdownMenu a {
-            text-decoration: none;
-            color: black;
-            font-size: 14px;
-        }
-        `;
-document.head.appendChild(style1);
-let timeout;
->>>>>>> 72af2451752bbe963a3d21d5afd31933ff6f285d
 MenuButton.addEventListener('click', () => {
     dropdownMenu.classList.toggle('active');
     if (dropdownMenu.classList.contains('active')) {
@@ -257,10 +166,7 @@ MenuButton.addEventListener('click', () => {
         clearTimeout(timeout);
     }
 });
-<<<<<<< HEAD
 // Checking condition size screen for responsive changes
-=======
->>>>>>> 72af2451752bbe963a3d21d5afd31933ff6f285d
 function checkScreenSize() {
     const width = window.innerWidth;
     if (width < 560) {
