@@ -305,6 +305,7 @@ section.your-active-class .landing__container::after {
     padding: 10px;
     z-index: 1000;
     display: none; 
+    
 }
 .dropdownMenu.active {
     display: block;

@@ -157,6 +157,7 @@ let timeout;
 //set listioner for Menu Button
 MenuButton.addEventListener('click', () => {
     dropdownMenu.classList.toggle('active');
+    navbarList.classList.remove('navbar__list--hidden');
     if (dropdownMenu.classList.contains('active')) {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
